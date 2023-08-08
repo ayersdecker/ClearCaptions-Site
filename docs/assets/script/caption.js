@@ -1,39 +1,41 @@
-const captionElement = document.getElementById('caption');
-const maxLines = 3; // Set the maximum number of lines for captions
+const micCaptionElement = document.getElementById('mic-caption');
+const audioCaptionElement = document.getElementById('audio-caption');
+const maxLines = 3;
 const captionLines = [];
 
-// Initialize the caption lines
 for (let i = 0; i < maxLines; i++) {
   captionLines.push('');
 }
 
-// Check if the browser supports the Web Speech API
-if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+// Set up Web Audio API context
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioContext.createAnalyser();
 
-  // Set continuous to true for live captions
-  recognition.continuous = true;
+// Set up WebRTC API to capture audio
+navigator.mediaDevices
+  .getUserMedia({ audio: true })
+  .then(stream => {
+    const audioSource = audioContext.createMediaStreamSource(stream);
+    audioSource.connect(analyser);
 
-  // When speech recognition returns a result
-  recognition.onresult = (event) => {
-    const lastResultIndex = event.results.length - 1;
-    const lastResult = event.results[lastResultIndex][0].transcript;
+    // Analyze audio data and update captions
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
 
-    // Shift the lines up and add the new result to the last line
-    captionLines.shift();
-    captionLines.push(lastResult);
+    const updateAudioCaptions = () => {
+      analyser.getByteFrequencyData(dataArray);
 
-    // Update the caption text with the latest recognized speech lines
-    captionElement.innerHTML = captionLines.map(line => `<p>${line}</p>`).join('');
-  };
+      // Convert audio data to a visual representation
+      const audioVisualization = /* Process dataArray and create a visual representation */;
 
-  // When an error occurs
-  recognition.onerror = (event) => {
-    console.error('Speech recognition error:', event.error);
-  };
+      // Update the audio caption element with the visualization
+      audioCaptionElement.innerHTML = audioVisualization;
+      requestAnimationFrame(updateAudioCaptions);
+    };
 
-  // Start speech recognition
-  recognition.start();
-} else {
-  captionElement.textContent = 'Speech recognition is not supported in this browser.';
-}
+    updateAudioCaptions();
+  })
+  .catch(error => {
+    console.error('Error capturing audio:', error);
+  });
