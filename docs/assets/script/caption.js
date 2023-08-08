@@ -1,4 +1,10 @@
 const captionElement = document.getElementById('caption');
+const maxLines = 3;
+const captionLines = [];
+
+for (let i = 0; i < maxLines; i++) {
+  captionLines.push('');
+}
 
 // Check if the browser supports the Web Speech API
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -12,8 +18,16 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     const lastResultIndex = event.results.length - 1;
     const lastResult = event.results[lastResultIndex][0].transcript;
 
-    // Update the caption text with the latest recognized speech
-    captionElement.textContent = lastResult;
+    // Split the recognized text into lines
+    const lines = lastResult.split('\n').slice(0, maxLines);
+
+    // Update the caption lines with the latest recognized speech
+    for (let i = 0; i < maxLines; i++) {
+      captionLines[i] = lines[i] || '';
+    }
+
+    // Update the caption text with the lines
+    captionElement.innerHTML = captionLines.map(line => `<p>${line}</p>`).join('');
   };
 
   // When an error occurs
