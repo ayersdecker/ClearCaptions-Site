@@ -26,8 +26,6 @@ navigator.mediaDevices
     const updateAudioCaptions = () => {
       analyser.getByteFrequencyData(dataArray);
 
-      // Convert audio data to a visual representation
-      const audioVisualization = /* Process dataArray and create a visual representation */;
 
       // Update the audio caption element with the visualization
       audioCaptionElement.innerHTML = audioVisualization;
