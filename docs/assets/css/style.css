@@ -9,6 +9,7 @@ p {
 }
 .caption-container 
 {
+    color: #111;
     border: 0ch;
     padding: 20px;
     margin: 20px auto;
