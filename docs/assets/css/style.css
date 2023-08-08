@@ -1,10 +1,13 @@
 body {
     text-align: center;
 }
-.caption-container {
+
+.caption-container 
+{
+    border: 0ch;
     padding: 20px;
     margin: 20px auto;
-    max-width: 800px; /* Adjust the max-width to your preference */
-    height: 300px;   /* Set the desired height for the caption container */
-    overflow-y: auto; /* Add vertical scrollbar if captions overflow the container */
-  }
+    max-width: 1000px;
+    height: 300px;  
+    overflow-y: auto; 
+}
