@@ -1,7 +1,10 @@
 body {
     text-align: center;
+    background-color: #111;
 }
-
+p { 
+    color: #fff;
+}
 .caption-container 
 {
     border: 0ch;
