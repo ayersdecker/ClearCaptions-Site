@@ -9,12 +9,7 @@ p {
     color: #fff;
 }
 
-.caption-container 
-{
-    color: #111;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 1000px;
-    height: 1000px;  
-    overflow-y: auto; 
-}
+.caption-container p {
+    font-size: 24px;
+    line-height: 1.5;
+  }
