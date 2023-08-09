@@ -2,6 +2,18 @@ const captionElement = document.getElementById('caption');
 const maxLines = 3; 
 const captionLines = [];
 
+const clockElement = document.getElementById('clock');
+
+const keepAliveInterval = 1000; // 15 seconds
+const updateClock = () => {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+};
+setInterval(updateClock, keepAliveInterval);
+
 for (let i = 0; i < maxLines; i++) {
   captionLines.push('');
 }
