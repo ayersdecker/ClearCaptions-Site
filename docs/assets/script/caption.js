@@ -17,7 +17,7 @@ const captionElement2 = document.getElementById('caption2');
 const maxLines = 3; 
 const captionLines = [];
 
-let clearTimeoutId; // Store the timeout ID for clearing captions
+let clearTimeoutId;
 
 for (let i = 0; i < maxLines; i++) {
   captionLines.push('');
@@ -29,26 +29,23 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
   recognition.continuous = true;
 
   recognition.onresult = (event) => {
-    clearTimeout(clearTimeoutId); // Clear the previous timeout
+    clearTimeout(clearTimeoutId); 
 
     const lastResultIndex = event.results.length - 1;
     const lastResult = event.results[lastResultIndex][0].transcript;
 
     const lines = lastResult.split('\n').slice(0, maxLines);
 
-    // Shift the lines up by one
     for (let i = 0; i < maxLines - 1; i++) {
       captionLines[i] = captionLines[i + 1];
     }
 
     captionLines[maxLines - 1] = lines[0] || '';
 
-    // Update the caption elements
     captionElement.textContent = captionLines[0];
     captionElement1.textContent = captionLines[1];
     captionElement2.textContent = captionLines[2];
 
-    // Set a timeout to bump captions after 5 seconds (adjust as needed)
     clearTimeoutId = setTimeout(() => {
       for (let i = 0; i < maxLines - 1; i++) {
         captionLines[i] = captionLines[i + 1];
@@ -58,7 +55,7 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
       captionElement.textContent = captionLines[0];
       captionElement1.textContent = captionLines[1];
       captionElement2.textContent = captionLines[2];
-    }, 5000); // Bump after 5 seconds
+    }, 5000);
   };
 
   recognition.onerror = (event) => {
