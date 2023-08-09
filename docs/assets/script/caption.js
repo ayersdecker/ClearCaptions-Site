@@ -4,13 +4,15 @@ const captionLines = [];
 
 const clockElement = document.getElementById('clock');
 
-const keepAliveInterval = 1000; // 15 seconds
+const keepAliveInterval = 1000;
 const updateClock = () => {
   const now = new Date();
-  const hours = now.getHours().toString().padStart(2, '0');
+  const hours = now.getHours();
   const minutes = now.getMinutes().toString().padStart(2, '0');
-  const seconds = now.getSeconds().toString().padStart(2, '0');
-  clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const displayHours = (hours % 12) || 12;
+
+  clockElement.textContent = `${displayHours}:${minutes} ${ampm}`;
 };
 setInterval(updateClock, keepAliveInterval);
 
