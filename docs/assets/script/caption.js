@@ -1,5 +1,5 @@
 const captionElement = document.getElementById('caption');
-const maxLines = 3;
+const maxLines = 3; 
 const captionLines = [];
 
 for (let i = 0; i < maxLines; i++) {
@@ -32,3 +32,4 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
 } else {
   captionElement.textContent = 'Speech recognition is not supported in this browser.';
 }
+
