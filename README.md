@@ -11,7 +11,7 @@ I needed a simplistic way to pull up captions on a computer. The goal is to make
 - [x] Add a Lightweight Clock to Screen
 - [x] Adjust Reponse to use 3 Lines
 - [x] Add buffer to 3 Line Approach
-- [ ] Add Timeout to Captions after short delay
+- [x] Add Timeout to Captions after short delay
 - [ ] Prevent Microphone Timeout from Browser
 - [ ] Layout Clock in Corner with Captions Centered
 - [ ] LightMode v DarkMode
