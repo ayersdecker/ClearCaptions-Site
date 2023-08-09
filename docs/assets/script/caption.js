@@ -1,9 +1,4 @@
-const captionElement = document.getElementById('caption');
-const maxLines = 3; 
-const captionLines = [];
-
 const clockElement = document.getElementById('clock');
-
 const keepAliveInterval = 1000;
 const updateClock = () => {
   const now = new Date();
@@ -15,6 +10,12 @@ const updateClock = () => {
   clockElement.textContent = `${displayHours}:${minutes} ${ampm}`;
 };
 setInterval(updateClock, keepAliveInterval);
+
+const captionElement = document.getElementById('caption');
+const captionElement1 = document.getElementById('caption1');
+const captionElement2 = document.getElementById('caption2');
+const maxLines = 3; 
+const captionLines = [];
 
 for (let i = 0; i < maxLines; i++) {
   captionLines.push('');
@@ -31,11 +32,17 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
 
     const lines = lastResult.split('\n').slice(0, maxLines);
 
-    for (let i = 0; i < maxLines; i++) {
-      captionLines[i] = lines[i] || '';
+    // Shift the lines up by one
+    for (let i = 0; i < maxLines - 1; i++) {
+      captionLines[i] = captionLines[i + 1];
     }
 
-    captionElement.innerHTML = captionLines.map(line => `<p>${line}</p>`).join('');
+    captionLines[maxLines - 1] = lines[0] || '';
+
+    // Update the caption elements
+    captionElement.textContent = captionLines[0];
+    captionElement1.textContent = captionLines[1];
+    captionElement2.textContent = captionLines[2];
   };
 
   recognition.onerror = (event) => {
@@ -45,5 +52,6 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
   recognition.start();
 } else {
   captionElement.textContent = 'Speech recognition is not supported in this browser.';
+  captionElement1.textContent = 'Speech recognition is not supported in this browser.';
+  captionElement2.textContent = 'Speech recognition is not supported in this browser.';
 }
-
