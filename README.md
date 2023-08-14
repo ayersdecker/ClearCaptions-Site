@@ -4,6 +4,9 @@
 ## What does this site do? 
 I needed a simplistic way to pull up captions on a computer. The goal is to make an easy to use site that did just one thing, closed captions.
 
+![image](https://github.com/ayersdecker/ClearCaptions-Site/assets/69859630/4fb917aa-cdf3-4d73-b261-dc3a2ef7a55b)
+
+
 ## Progress 🏙
 - [x] Access Browser Microphones
 - [x] Connect to Captioning Service (via JavaScript)
