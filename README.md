@@ -18,10 +18,10 @@ I needed a simplistic way to pull up captions on a computer. The goal is to make
 
 > Site Superseded by Reflex Project
 
-- [ ] Prevent Microphone Timeout from Browser 
-- [ ] Layout Clock in Corner with Captions Centered
-- [ ] LightMode v DarkMode
-- [ ] Text-Scaling and Font Options (OpenDyslexic and SuperSans)
+- [ ] <del>Prevent Microphone Timeout from Browser</del> 
+- [ ] <del>Layout Clock in Corner with Captions Centered</del>
+- [ ] <del>LightMode v DarkMode</del>
+- [ ] <del>Text-Scaling and Font Options (OpenDyslexic and SuperSans)</del>
 
 ## Development 🚧
 This site is being developed during my time at NTID CAT Lab. It is my personal research into Captioning Services, and how to create one. <del>I plan to finish the site to some capacity and publish it with a custom domain</del>. I will frequently provide updates as I develop.
